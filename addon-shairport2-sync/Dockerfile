@@ -1,4 +1,4 @@
-ARG BUILD_FROM=ghcr.io/home-assistant/armv7-base-debian:latest
+ARG BUILD_FROM=ghcr.io/home-assistant/armv7-base:latest
 FROM ${BUILD_FROM} AS builder
 
 ENV LANG C.UTF-8
@@ -6,29 +6,26 @@ ENV LANG C.UTF-8
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-RUN apt update && \
-        apt install -y --no-install-recommends build-essential \
-        autoconf \
-        automake \
-        avahi-daemon \
+RUN apk update && \
+        apk add --no-cache build-base \
         git \
         iproute2 \
-        libasound2-dev \
-        libavcodec-dev \
-        libavformat-dev \
-        libavahi-client-dev \
-        libavutil-dev \
-        libconfig-dev \
-        libgcrypt-dev \
-        libplist-dev \
-        libpopt-dev \
-        libsodium-dev \
-        libsoxr-dev \
-        libssl-dev \
+        autoconf \
+        automake \
         libtool \
-        uuid-dev \
-        xxd \
-        && rm -rf /var/lib/apt/lists/*
+        popt-dev \
+        libconfig-dev \
+        alsa-lib-dev \
+        avahi \
+        avahi-dev \
+        openssl-dev \
+        soxr-dev \
+        libplist-dev \
+        libsodium-dev \
+        ffmpeg-dev \
+        util-linux-dev \
+        libgcrypt-dev \
+        xxd
 
 WORKDIR /root
 RUN git clone https://github.com/mikebrady/shairport-sync.git 
