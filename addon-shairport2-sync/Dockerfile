@@ -8,24 +8,26 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 RUN apk update && \
         apk add --no-cache build-base \
-        git \
-        iproute2 \
+        alsa-lib-dev \
         autoconf \
         automake \
-        libtool \
-        popt-dev \
-        libconfig-dev \
-        alsa-lib-dev \
         avahi \
         avahi-dev \
-        openssl-dev \
-        soxr-dev \
+        dbus \
+        ffmpeg-dev \
+        git \
+        iproute2 \
+        libconfig-dev \
+        libgcrypt-dev \
         libplist-dev \
         libsodium-dev \
-        ffmpeg-dev \
+        libtool \
+        openssl-dev \
+        popt-dev \
+        soxr-dev \
         util-linux-dev \
-        libgcrypt-dev \
-        xxd
+        xxd \
+
 
 WORKDIR /root
 RUN git clone https://github.com/mikebrady/shairport-sync.git 
