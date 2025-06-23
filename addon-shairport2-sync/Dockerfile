@@ -26,7 +26,7 @@ RUN apk update && \
         popt-dev \
         soxr-dev \
         util-linux-dev \
-        xxd \
+        xxd
 
 
 WORKDIR /root
