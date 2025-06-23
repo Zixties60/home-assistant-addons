@@ -2,8 +2,8 @@
 	"name": "Shairport Sync",
 	"version": "1.0.0",
 	"slug": "shairport_sync",
-	"description": "Shairport Sync for Hass.io",
-	"url": "https://github.com/zixties60/home-assistant-addons",
+	"description": "Shairport2 Sync for Hass.io",
+	"url": "https://github.com/Zixties60/home-assistant-addons",
 	"startup": "application",
 	"arch": ["aarch64", "amd64", "armhf", "armv7", "i386"],
 	"boot": "auto",
@@ -19,7 +19,7 @@
 		"avahi_interfaces": "",
 		"avahi_hostname": "",
 		"avahi_domainname": "local",
-		"airplay_name": "Home Assistant",
+		"airplay_name": "Hass.io",
 		"enable_ipv6": false
 	},
 	"schema": {
@@ -33,5 +33,5 @@
 	"environment": {
 		"LOG_FORMAT": "{LEVEL}: {MESSAGE}"
 	},
-	"image": "ghcr.io/zixties60/{arch}-addon-shairport2-sync"
+	"image": "ghcr.io/zixites60/{arch}-addon-shairport2-sync"
 }
