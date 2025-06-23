@@ -1,6 +1,6 @@
 {
 	"name": "Shairport Sync",
-	"version": "0.0.1-alpha5",
+	"version": "0.0.1-alpha6",
 	"slug": "shairport_sync",
 	"description": "Shairport Sync addon for Home Assistant",
 	"url": "https://github.com/Zixties60/home-assistant-addons",

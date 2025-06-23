@@ -68,8 +68,8 @@ WORKDIR /
 # ##### STATIC FILES #####
 # FROM scratch AS files
 
-# # Add run script that will start SPS
-# COPY --chmod=755 ./docker/run.sh ./run.sh
+# # # Add run script that will start SPS
+# COPY ./docker/run.sh ./run.sh
 # COPY ./docker/etc/s6-overlay/s6-rc.d /etc/s6-overlay/s6-rc.d
 # COPY ./docker/etc/pulse /etc/pulse
 # ##### END STATIC FILES #####
@@ -138,6 +138,10 @@ COPY --from=build-files / /
 
 # Copy root filesystem
 COPY rootfs /
+
+# CHMODS
+RUN chmod +x /run.sh
+RUN chmod +x /etc/s6-overlay/s6-rc.d/01-startup/script.sh
 
 # Build arguments
 ARG BUILD_ARCH
