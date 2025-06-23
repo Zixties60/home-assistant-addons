@@ -1,0 +1,4 @@
+# https://developers.home-assistant.io/docs/add-ons/repository#repository-configuration
+name: Home Assistant add-on repository - Zixties60
+url: "https://github.com/Zixties60/home-assistant-addons"
+maintainer: Zixties60 <13465511+Zixties60@users.noreply.github.com>
