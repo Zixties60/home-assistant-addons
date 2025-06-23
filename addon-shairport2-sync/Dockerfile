@@ -142,6 +142,8 @@ COPY rootfs /
 # CHMODS
 RUN chmod +x /run.sh
 RUN chmod +x /etc/s6-overlay/s6-rc.d/01-startup/script.sh
+RUN chmod +x /etc/s6-overlay/s6-rc.d/02-dbus/20-dbus.sh
+RUN chmod +x /etc/s6-overlay/s6-rc.d/03-avahi/30-avahi.sh
 
 # Build arguments
 ARG BUILD_ARCH

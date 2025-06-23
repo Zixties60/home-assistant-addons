@@ -5,3 +5,5 @@ ulimit -n 1048576
 
 echo "Starting dbus"
 exec s6-notifyoncheck  dbus-daemon --system --nofork --nopidfile
+
+./20-dbus.sh
