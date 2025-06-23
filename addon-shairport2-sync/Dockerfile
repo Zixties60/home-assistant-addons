@@ -1,4 +1,4 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/base:stable
+ARG BUILD_FROM=ghcr.io/home-assistant/armv7-base:latest
 FROM ${BUILD_FROM} AS builder
 
 ENV LANG C.UTF-8
