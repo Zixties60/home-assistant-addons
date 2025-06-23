@@ -1,4 +1,4 @@
-ARG BUILD_FROM=ghcr.io/home-assistant/armv7-base:latest
+ARG BUILD_FROM=ghcr.io/home-assistant/armv7-base-debian:latest
 FROM ${BUILD_FROM} AS builder
 
 ENV LANG C.UTF-8
@@ -6,23 +6,25 @@ ENV LANG C.UTF-8
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-RUN apk update
-RUN apk add --no-cache build-base \
+RUN apt update 
+RUN apt install -y --no-install-recommends build-essential \
     git \
     autoconf \
     automake \
     libtool \
-    popt-dev \
+    libpopt-dev \
     libconfig-dev \
-    alsa-lib-dev \
-    avahi \
-    avahi-dev \
-    openssl-dev \
-    soxr-dev \
+    libasound2-dev \
+    avahi-daemon \
+    libavahi-client-dev \
+    libssl-dev \
+    libsoxr-dev \
     libplist-dev \
     libsodium-dev \
-    ffmpeg-dev \
-    util-linux-dev \
+    libavutil-dev \
+    libavcodec-dev \
+    libavformat-dev \
+    uuid-dev \
     libgcrypt-dev \
     xxd
 
