@@ -30,5 +30,6 @@ jobs:
                   args: |
                       --amd64 \
                       --aarch64 \
+                      --version 0.0.1-${{ steps.get_short_sha.outputs.SHORT_SHA }} \
                       --target addon-shairport2-sync \
                       --docker-hub ghcr.io/zixties60
