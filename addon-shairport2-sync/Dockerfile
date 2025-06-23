@@ -1,4 +1,6 @@
-ARG BUILD_FROM=ghcr.io/home-assistant/armv7-base:latest
+ARG NQPTP_BRANCH=main
+ARG SHAIRPORT_SYNC_BRANCH=master
+ARG BUILD_FROM=ghcr.io/home-assistant/aarch64-base:latest
 FROM alpine:3.20 AS builder
 
 RUN apk -U add \
@@ -50,10 +52,8 @@ WORKDIR /
 # Note: apple-alac requires alac build first.
 FROM alac AS shairport-sync
 ARG SHAIRPORT_SYNC_BRANCH
-
-WORKDIR /shairport-sync
-COPY . .
-RUN git checkout "$SHAIRPORT_SYNC_BRANCH"
+WORKDIR /
+RUN git clone -b "$SHAIRPORT_SYNC_BRANCH" https://github.com/mikebrady/shairport-sync
 WORKDIR /shairport-sync/build
 RUN autoreconf -i ../
 RUN CFLAGS="-O3" CXXFLAGS="-O3" ../configure --sysconfdir=/etc --with-alsa --with-pa --with-soxr --with-avahi --with-ssl=openssl \
@@ -65,18 +65,17 @@ RUN DESTDIR=install make install
 WORKDIR /
 ##### SPS END #####
 
-##### STATIC FILES #####
-FROM scratch AS files
+# ##### STATIC FILES #####
+# FROM scratch AS files
 
-# Add run script that will start SPS
-COPY --chmod=755 ./docker/run.sh ./run.sh
-COPY ./docker/etc/s6-overlay/s6-rc.d /etc/s6-overlay/s6-rc.d
-COPY ./docker/etc/pulse /etc/pulse
-##### END STATIC FILES #####
+# # Add run script that will start SPS
+# COPY --chmod=755 ./docker/run.sh ./run.sh
+# COPY ./docker/etc/s6-overlay/s6-rc.d /etc/s6-overlay/s6-rc.d
+# COPY ./docker/etc/pulse /etc/pulse
+# ##### END STATIC FILES #####
 
 ##### BUILD FILES #####
 FROM scratch AS build-files
-
 COPY --from=shairport-sync /shairport-sync/build/install/usr/local/bin/shairport-sync /usr/local/bin/shairport-sync
 COPY --from=shairport-sync /shairport-sync/build/install/usr/local/share/man/man1 /usr/share/man/man1
 COPY --from=nqptp /nqptp/nqptp /usr/local/bin/nqptp
@@ -87,6 +86,7 @@ COPY --from=shairport-sync /shairport-sync/build/install/etc/dbus-1/system.d/sha
 COPY --from=shairport-sync /shairport-sync/build/install/etc/dbus-1/system.d/shairport-sync-mpris.conf /etc/dbus-1/system.d/
 ##### END BUILD FILES #####
 
+# Shairport Sync Addon Runtime System
 FROM ${BUILD_FROM} AS hassio-addon
 
 ENV S6_CMD_WAIT_FOR_SERVICES=1
@@ -105,7 +105,7 @@ RUN apk -U add \
         libgcrypt \
         libplist \
         libpulse \
-        libressl3.8-libcrypto \
+        libressl4.1-libcrypto \
         libsndfile \
         libsodium \
         libuuid \
@@ -133,7 +133,7 @@ RUN rm -rfv /lib/apk/db/* && \
 # Shairport Sync to provide the D-Bus and MPRIS interfaces within the container
 # Add the shairport-sync user to the pre-existing audio group, which has ID 29, for access to the ALSA stuff
 
-COPY --from=files / /
+# COPY --from=files / /
 COPY --from=build-files / /
 
 # Copy root filesystem
