@@ -1,8 +1,8 @@
 {
 	"name": "Shairport Sync",
-	"version": "1.0.0alpha2",
+	"version": "0.0.1 alpha1",
 	"slug": "shairport_sync",
-	"description": "Shairport Sync for Hass.io",
+	"description": "Shairport Sync addon for Home Assistant",
 	"url": "https://github.com/Zixties60/home-assistant-addons",
 	"startup": "application",
 	"arch": ["aarch64", "amd64", "armhf", "armv7", "i386"],
