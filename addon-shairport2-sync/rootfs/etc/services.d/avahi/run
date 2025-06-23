@@ -11,6 +11,9 @@ do
   sleep 1
 done
 
+# Create run directory
+mkdir -p /var/run/avahi-daemon
+
 # Start the Avahi daemon
 if bashio::debug; then
   exec avahi-daemon --debug
