@@ -6,27 +6,29 @@ ENV LANG C.UTF-8
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-RUN apt update 
-RUN apt install -y --no-install-recommends build-essential \
-    git \
-    autoconf \
-    automake \
-    libtool \
-    libpopt-dev \
-    libconfig-dev \
-    libasound2-dev \
-    avahi-daemon \
-    libavahi-client-dev \
-    libssl-dev \
-    libsoxr-dev \
-    libplist-dev \
-    libsodium-dev \
-    libavutil-dev \
-    libavcodec-dev \
-    libavformat-dev \
-    uuid-dev \
-    libgcrypt-dev \
-    xxd
+RUN apt update && \
+        apt install -y --no-install-recommends build-essential \
+        autoconf \
+        automake \
+        avahi-daemon \
+        git \
+        iproute2 \
+        libasound2-dev \
+        libavcodec-dev \
+        libavformat-dev \
+        libavahi-client-dev \
+        libavutil-dev \
+        libconfig-dev \
+        libgcrypt-dev \
+        libplist-dev \
+        libpopt-dev \
+        libsodium-dev \
+        libsoxr-dev \
+        libssl-dev \
+        libtool \
+        uuid-dev \
+        xxd \
+        && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /root
 RUN git clone https://github.com/mikebrady/shairport-sync.git 
