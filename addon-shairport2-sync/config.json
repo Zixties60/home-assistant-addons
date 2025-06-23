@@ -2,7 +2,7 @@
 	"name": "Shairport Sync",
 	"version": "1.0.0",
 	"slug": "shairport_sync",
-	"description": "Shairport2 Sync for Hass.io",
+	"description": "Shairport Sync for Hass.io",
 	"url": "https://github.com/Zixties60/home-assistant-addons",
 	"startup": "application",
 	"arch": ["aarch64", "amd64", "armhf", "armv7", "i386"],
@@ -20,7 +20,7 @@
 		"avahi_interfaces": "",
 		"avahi_hostname": "",
 		"avahi_domainname": "local",
-		"airplay_name": "Hass.io",
+		"airplay_name": "Home Assistant",
 		"enable_ipv6": false
 	},
 	"schema": {
