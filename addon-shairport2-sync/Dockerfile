@@ -13,6 +13,7 @@ RUN apk update && \
         automake \
         avahi \
         avahi-dev \
+        avahi-tools \
         dbus \
         ffmpeg-dev \
         git \
@@ -24,12 +25,20 @@ RUN apk update && \
         libtool \
         openssl-dev \
         popt-dev \
+        s6 \
+        s6-rc \
         soxr-dev \
         util-linux-dev \
-        xxd
+        xxd \
+        && rm -rf /var/cache/apk/*
 
 
 WORKDIR /root
+
+RUN mkdir -p /run/dbus \
+    && mkdir -p /var/lib/dbus \
+    && mkdir -p /var/run/avahi-daemon
+
 RUN git clone https://github.com/mikebrady/shairport-sync.git 
 WORKDIR /root/shairport-sync
 RUN autoreconf -fi 
