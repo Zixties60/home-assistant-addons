@@ -33,5 +33,6 @@
 	},
 	"environment": {
 		"LOG_FORMAT": "{LEVEL}: {MESSAGE}"
-	}
+	},
+	"image": "ghcr.io/zixties60/{arch}-addon-shairport2-sync"
 }
